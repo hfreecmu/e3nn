@@ -95,7 +95,7 @@ def wigner_D(l: int, alpha: torch.Tensor, beta: torch.Tensor, gamma: torch.Tenso
     alpha = alpha[..., None, None] % (2 * math.pi)
     beta = beta[..., None, None] % (2 * math.pi)
     gamma = gamma[..., None, None] % (2 * math.pi)
-    X = so3_generators(l)
+    X = so3_generators(l).to(alpha.device)
     return torch.matrix_exp(alpha * X[1]) @ torch.matrix_exp(beta * X[0]) @ torch.matrix_exp(gamma * X[1])
 
 
